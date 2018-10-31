@@ -1,15 +1,36 @@
 package de.leuphana.ctschubel.test.appservices.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import de.leuphana.ctschubel.test.model.Song;
+import de.leuphana.ctschubel.test.repository.SongSqlRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/v1/test")
+@RequestMapping("/v1/test/song")
 public class TestAppRestController {
+    @Autowired
+    private SongSqlRepository repository;
 
-    @GetMapping("/get")
-    public String HelloWorld(){
-        return "helloWorld";
+    @GetMapping("/getAll")
+    public Iterable<Song> HelloWorld(){
+        return repository.findAll();
     }
+
+    @PostMapping(value="/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void addSong(@RequestBody Song song){
+        repository.save(song);
+    }
+
+    @GetMapping("/get/{id}")
+    public Song findSongById(@PathVariable("id") int id){
+        Optional<Song> song = repository.findById(id);
+        return song.isPresent() ? song.get() : null;
+
+
+
+    }
+
 }
