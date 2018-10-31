@@ -37,6 +37,7 @@ public class TestAppRestControllerTest {
         verifyNoMoreInteractions(sqlRepository);
     }
 
+
     @Test
     public void findAll_ok() {
         when(sqlRepository.findAll()).thenReturn(new ArrayList<>());
