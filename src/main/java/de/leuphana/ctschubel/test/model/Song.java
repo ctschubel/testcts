@@ -6,8 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Song Table in Database
- * @author Christopher
+ * Spring data JPA song entity.
+ * @author ctschubel
  */
 @Entity
 public class Song {

@@ -8,14 +8,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+/**
+ * RestController for {@link SongSqlRepository}.
+ * @author ctschubel
+ */
 @RestController
 @RequestMapping("/v1/test/song")
 public class TestAppRestController {
+
     @Autowired
     private SongSqlRepository repository;
 
     @GetMapping("/getAll")
-    public Iterable<Song> HelloWorld(){
+    public Iterable<Song> findAll(){
         return repository.findAll();
     }
 
@@ -27,7 +32,7 @@ public class TestAppRestController {
     @GetMapping("/get/{id}")
     public Song findSongById(@PathVariable("id") int id){
         Optional<Song> song = repository.findById(id);
-        return song.isPresent() ? song.get() : null;
+        return song.orElse(null);
 
 
 
