@@ -1,5 +1,5 @@
 # Dockerfile
-# getting base image ubuntu
+# getting base image
 FROM openjdk:8
 
 MAINTAINER ctschubel <ctschubel@googlemail.com>
