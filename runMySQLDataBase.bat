@@ -14,9 +14,9 @@ docker run --rm --name test-mysql -p 3306:3306 -p 33060:33060 -e MYSQL_ROOT_PASS
 IF errorlevel 1 GOTO error
 
 echo wait for mysql to start up...
-FOR /L %%i IN (10,10,120) DO (
+FOR /L %%i IN (10,10,60) DO (
     ping -n 10 localhost> nul
-    echo %%i of 120 seconds waited...
+    echo %%i of 60 seconds waited...
 )
 
 echo MySQL was successfully started! :)
